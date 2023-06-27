@@ -1,0 +1,129 @@
+.articles-block {
+  margin-top: var(--margin-top);
+}
+
+
+.articles-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.articles-grid {
+  flex: 1 1 33%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.article-x {
+  border-radius: 8px;
+  display: block;
+  background-color: var(--light-color);
+}
+
+.article-x-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+}
+
+.article-1 {
+  color: var(--text-color);
+  display: flex
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.article-description {
+  margin-top: var(--margin-title);
+  display: flex;
+  flex-direction: column;
+}
+
+.article-date {
+  color: #868686e0;
+  font-size: 13px;
+}
+
+.article-title {
+  color: white;
+  font-weight: 700;
+  transition: var(--text-hover-transition);
+}
+
+.article-title:hover {
+  color: var(--button-hover-color);
+}
+
+.article-author {
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.image-container {
+  margin-top: 4px;
+}
+
+.author-picture {
+  margin-top: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50px;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.author-name {
+  color: var(--text-color);
+  padding-left: 5px;
+  font-size: 14px;
+  transition: var(--text-hover-transition);
+}
+
+.author-name:hover {
+  color: var(--button-hover-color);
+}
+
+@media screen and (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.articles-grid .article-x {
+  display: none;
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.load-more-btn {
+  padding: 10px 20px;
+  background-color: var(--light-color);
+  font-family: var(--font-family);
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Center the button */
+  transition: all 0.3s ease; /* Add transition effect */
+}
+
+.load-more-btn:hover {
+  opacity: 0.8; /* Adjust the opacity on hover */
+  background-color: white;
+  color: black;
+}

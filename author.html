@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author</title>
+  <link rel="stylesheet" href="styles/main-page/general.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body.fade-in {
+      opacity: 0;
+      transition: opacity .5s ease-in-out;
+    }
+
+    body.fade-in.visible {
+      opacity: 1;
+    }
+
+    .author-headline-container {
+      margin-top: 20px;
+    }
+    
+    .author-components {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      color: white;
+      padding: 0 20px;
+      line-height: 1.7rem;
+    }
+
+    .author-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 280px;
+      border-radius: 8px;
+      align-self: flex-start;
+      align-items: center;
+    }
+
+    .author-headshot {
+      width: 200px;
+      max-width: 100%;
+      height: 200px;
+      border-radius: 100%;
+      margin: 30px auto;
+    }
+
+    .author-details {
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-color);
+      border-radius: 8px;
+      padding: 20px 10px;
+    }
+    
+    .article-text {
+      font-size: 20px;
+    }
+
+    .author-random {
+      max-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-color);
+      border-radius: 8px;
+      padding: 20px 10px;
+      top: 20px;
+    }
+  
+    .author-picture {
+      display: flex;
+      background: var(--light-color);
+      width: 280px;
+      border-radius: 8px;
+      align-self: flex-start;
+    }
+
+    .author-socials {
+      display: flex;
+      background: var(--light-color);
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      padding: 15px 30px;
+      gap: 60px;
+      max-width: 280px;
+    }
+
+    .github-icon {
+      font-size: 24px;
+    }
+
+    .icon-text-style {
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .link {
+      transition: var(--text-hover-transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .link:hover {
+      color: var(--button-hover-color);
+    }
+
+    a,
+    span {
+      margin: 0;
+      padding: 0;
+    }
+
+    .back-button {
+      background: var(--light-color);
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <div class="author-headline-container">
+    <!--Author Profile-->
+    <div class="author-components">
+        <div class="author-left">
+
+          <div class="author-picture">
+            <img class="author-headshot" src="pictures/author-picture.jpeg" alt="">
+          </div>
+          <div class="author-socials">
+            <a class="link" href="" target="_blank">
+              <i class="github-icon fa fa-github"></i>
+              <span class="icon-text-style">Github</span>
+            </a>
+            <a class="link" href="https://www.linkedin.com/in/bogdan-grossu-8b9371278/" target="_blank">
+              <i class="github-icon fa fa-linkedin-square"></i>
+              <span class="icon-text-style">Linkedin</span>
+            </a>
+          </div>
+          <div class="author-details">
+            <h1 class="about">About</h1>
+            <p class="article-text">s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            
+            </p>
+           </div>
+        </div>
+
+
+        <div class="author-details">
+         <h1 class="about">About</h1>
+         <p class="article-text">What is Lorem Ipsum?
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+         </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="author-headline-container">
+    <div class="author-components">
+      <div class="author-details">
+        <h1 class="about">About</h1>
+        <p class="article-text">What is Lorem Ipsum?
+         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+       </div>
+
+        <div class="author-left">
+
+          <div class="author-picture">
+            <img class="author-headshot" src="pictures/author-picture.jpeg" alt="">
+          </div>
+          <div class="author-socials">
+            <a class="link" href="">
+              <i class="github-icon fa fa-github"></i>
+              <span class="icon-text-style">Github</span>
+            </a>
+            <a class="link" href="">
+              <i class="github-icon fa fa-linkedin-square"></i>
+              <span class="icon-text-style">Linkedin</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var bodyElement = document.querySelector('body');
+    bodyElement.classList.add('visible');
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!--CSS Styles-->
+  <link rel="stylesheet" href="styles/main-page/general.css">
+  <link rel="stylesheet" href="styles/main-page/header.css">
+  <link rel="stylesheet" href="styles/main-page/menu.css">
+  <link rel="stylesheet" href="styles/main-page/articles.css">
+  <link rel="stylesheet" href="styles/main-page/search-bar.css">
+  <link rel="stylesheet" href="styles/main-page/footer.css">
+  <!--Icons-->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <title>CyberAnalyst</title>
+</head>
+<body>
+  <!--Header-->
+  <header class="header container">
+    <nav class="navbar">
+      
+      <div class="header-left">
+        <a class="logo-a" href="#">
+          <img class="logo-icon" src="logo (3).png" alt="">
+          <h2 class="logo">The Infosec Blog</h2>
+        </a>
+      </div>
+
+      <div class="header-right-section">
+
+
+        <button class="btn search-button header-right-section" id="search-toggle-btn">
+          <i class="ri-search-line"></i>
+        </button>
+
+        <a href="./author.html">
+          <button class="btn user-icon">
+            <i class="fa fa-user-circle"></i>
+          </button>
+        </a>
+
+      </div>
+    </nav>
+  </header>
+
+  <!--Search-->
+  <div class="search container" id="search-container">
+    <div class="search-container">
+      <div class="search-bar-content">
+        <button class="exit-btn theme-button btn" id="search-close-btn">
+          <i class="ri-close-line"></i>
+        </button>
+        <input class="search-bar" type="text" placeholder="Search..."
+        id="search-input">
+      </div>
+      <div class="search-results-container">
+        <div class="search-results-inner">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Menu-->
+  <div class="menu-bar container">
+    <div class="menu-headline">
+      <div class="menu-components">
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Analysis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/contact.html">Contact</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <!--Articles-->
+  <div class="articles-block container" id="articles-block">
+    <div class="articles-flex">
+      <div class="articles-grid">
+
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+
+                <img class="image" src="programming-background-concept.jpg" alt="">
+
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date"> <i class="fa fa-calendar"></i> 18-06-2023</span>
+              <a href="/articles/analysis/article-1.html">
+                <h2 class="article-title">How To Build a SOC Analyst Home Lab?</h2>
+              </a>
+
+              <div class="article-author">
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+              <img class="image" src="pictures/Cyber Secuirty.png" alt="">
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date">12-12-2004</span>
+              <a href="article.html">
+                <h2 class="article-title">farted Identity</h2>
+              </a>
+
+              <div class="article-author">
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+              <img class="image" src="pictures/Cyber Secuirty.png" alt="">
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date">12-12-2004</span>
+              <a href="article.html">
+                <h2 class="article-title">farted Identity</h2>
+              </a>
+
+              <div class="article-author">
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+              <img class="image" src="pictures/Cyber Secuirty.png" alt="">
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date">12-12-2004</span>
+              <a href="article.html">
+                <h2 class="article-title">farted Identity</h2>
+              </a>
+
+              <div class="article-author">
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+              <img class="image" src="/rog.jpg" alt="">
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date">12-12-2004</span>
+              <a href="article.html">
+                <h2 class="article-title">how to become the best person on the </h2>
+              </a>
+
+              <div class="article-author">
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="article-x">
+          <div class="article-x-flex">
+
+            <div class="article-1">
+              <img class="image" src="pictures/Cyber Secuirty.png" alt="">
+            </div>
+
+            <div class="article-description">
+
+              <span class="article-date">12-12-2004</span>
+              <a href="article.html">
+                <h2 class="article-title">how to setup the ultimate SOC Analyst Lab?</h2>
+              </a>
+
+              <div class="article-author">
+
+                <div class="image-container">
+                  <img class="author-picture" src="./pictures/author-picture.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  <a href="author.html" target="_blank">
+                    <span class="author-name">
+                      Bogdan Grossu
+                    </span>
+                  </a>
+                </div>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="article-x">
+          <div class="article-1">asdf asdfsfsdfasdfasdfasdfasdfasdf</div>
+          <div class="article-1">asdf</div>
+          <div class="article-1">asdf</div>
+          <div class="article-1">asdf</div>
+        </div>
+        <div class="article-x">
+          <div class="article-1">asdf asdfsfsdfasdfasdfasdfasdfasdf</div>
+          <div class="article-1">asdf</div>
+          <div class="article-1">asdf</div>
+          <div class="article-1">asdf</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="load-more-container">
+      <button class="load-more-btn" id="load-more-btn"> Load More</button>
+    </div>
+    <footer class="footer">
+      <div class="footer-elements">
+        <h3>© The Infosec Blog 2023</h2>
+      </div>
+    </footer>
+  </div>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>

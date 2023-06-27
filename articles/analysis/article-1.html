@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap" rel="stylesheet">
+  <!--CSS Styles-->
+  <link rel="stylesheet" href="/styles/main-page/general.css">
+  <link rel="stylesheet" href="/styles/main-page/header.css">
+  <link rel="stylesheet" href="/styles/main-page/menu.css">
+  <link rel="stylesheet" href="/styles/main-page/articles.css">
+  <link rel="stylesheet" href="/styles/main-page/search-bar.css">
+  <link rel="stylesheet" href="/styles/articles/analysis/article-1.css">
+
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/obsidian.min.css">
+
+
+  <!--Icons-->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>InfoSec</title>
+
+</head>
+<body style="transition: all 0.15s ease;" class="container-article">
+
+
+  <!--Menu-->
+  <div class="menu-bar">
+    <div class="menu-headline">
+      <div class="menu-components">
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Analysis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/contact.html">Contact</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <!--Article Content-->
+  <div class="header-article">
+
+    <div class="article-content">
+      
+      <!--Article Heading-->
+      <h2 class="article-title">How To Build a SOC Analyst Home Lab?</h2>
+
+      <!--Article Image-->
+      <div class="article-headline-image">
+        <img class="article-image" src="/virtual machine.jpg" alt="">
+      </div>
+      <!--Article paragraphs-->
+      <span class="heading">Introduction</span>
+      <p>
+        This article is derived from <a href="">Eric Capuano&#39;s</a> informative blog post series which offers a hands-on approach to ultimately gain the essential skills required for a career in security, specifically as a SOC analyst.
+        This article is written for security enthusiasts with the intention to make it as readable as possible. If you come across issues that aren&#39;t covered in the post consider googling them. Although,
+        I have ran through issues which I have hopefully covered, different versions of the same software change the requirements.
+      </p>
+      <p style="margin-right: auto;">System Requirements:</p>
+      <ul class="custom-bullet-list">
+        <li class="bullet-point">Ensure that you have around <span class="colorful-underline">100GB</span> of free disk space</li>
+        <li class="bullet-point">I recommend <span class="colorful-underline">16GB</span> of RAM as 8GB wouldn&#39;t be enough to properly run the machines</li>
+      </ul>
+      <p style="margin-right: auto;">This article is broken down into 3 parts:</p>
+      <ul class="custom-bullet-list">
+        <li class="bullet-point">
+          <a href="#vms" class="clickable-section">Virtual Machine Setup</a>
+          <ul>
+            <li class="alphabetical-point">a&#46; &nbsp; VMware Workstation</li>
+            <li class="alphabetical-point">b&#46; &nbsp; Ubuntu Server</li>
+            <li class="alphabetical-point">c&#46; &nbsp; Windows 11 </li>
+          </ul>
+        </li>
+        <li class="bullet-point">
+          <a href="" class="clickable-section">Icebreaker</a>
+          <ul>
+            <li class="alphabetical-point">a&#46; &nbsp; Sliver Server</li>
+            <li class="alphabetical-point">b&#46; &nbsp; C2 Payloads</li>
+            <li class="alphabetical-point">c&#46; &nbsp; Breaking Windows</li>
+          </ul>
+        </li>
+        <li class="bullet-point">
+          <a href="" class="clickable-section">Analysis</a>
+          <ul>
+            <li class="alphabetical-point">a&#46; &nbsp; Lima Charlie Setup</li>
+            <li class="alphabetical-point">b&#46; &nbsp; Sensor and Detections</li>
+            <li class="alphabetical-point">b&#46; &nbsp; Detection & Response Rules</li>
+          </ul>
+        </li>
+      </ul>
+      <span class="heading" id="vms">Virtual Machine Setup</span>
+      <p>To begin with, what is a virtual machine? A virtual machine (VM) is a virtual computer that runs inside your physical computer. This can become useful when you need to use multiple systems to test, for instance, malicious files (viruses, stuff that breaks your computer) or, in our case, we need two virtual machines to build a lab to better understand the work done by a SOC analyst. The first one would act as an attacker&#39;s machine (Ubuntu Server), and the second one as a victim&#39;s machine (Windows 11).
+        Let's download the files first.
+      </p>
+      <ul class="custom-bullet-list">
+        <li class="bullet-point">
+          <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html" target="_blank" class="text-highlight">VMware Workstation Pro</a>
+          - The hypervisor (software that creates and runs VMs) we&#39;ll use to generate the virtual machines.
+          Make sure to download the right package, for example, pick <strong>&#39;Workstation 17 Pro for Windows&#39;</strong> if your computer runs Windows. Go through the installation, if in doubt don&#39;t change the default configuration. 
+        </li>
+      </ul>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vmware.png" alt="">
+      </div>
+      <ul class="custom-bullet-list">
+        <li class="bullet-point">
+          <a href="https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso?_ga=2.54359648.913305197.1686926876-1192143658.1686926876" target="_blank" class="text-highlight">Ubuntu Server</a>
+          - Note that we&#39;re downloading version 22.04.2 LTS. To check if there is a new version of the server click <a href="https://ubuntu.com/download/server" target="_blank" class="text-highlight">here</a>.
+        </li>
+        <li class="bullet-point">
+          <a href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/" target="_blank" class="text-highlight">Windows 11</a>
+          - Pick <strong>VMWare</strong>. The file is around 20GB and note that the machine expires in about a month but you can download another one after it expires.
+        </li>
+      </ul>
+      <p>The Ubuntu Server as well as the Windows 11 machine are images, not clickable files, so you can't open the file by itself. After you have downloaded VMware you should be able to see a window like this:</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vmware1.png" alt="">
+      </div>
+      <p style="margin-right: auto;">I&#39;ve already got the machines but your tab should be empty. To add the Ubuntu machine:</p>
+      <ol class="custom-numbered-list">
+        <li class="numbered-point">Go to the "File" menu at the top left corner of the application.</li>
+        <li class="numbered-point">Click on "New Virtual Machine" or simply press Ctrl+N.</li>
+        <li class="numbered-point">The New Virtual Machine Wizard will appear.</li>
+        <li class="numbered-point">Choose Typical and click "Next".</li>
+        <li class="numbered-point">Select the ISO file that we have downloaded.</li>
+        <li class="numbered-point">Specify the name and location for your VM&#39;s files.</li>
+        <li class="numbered-point">The disk capacity should be 14GB.</li>
+        <li class="numbered-point">Click "Customize Hardware..." and choose 2GB of RAM and 2 cores. Click "Finish"</li>
+      </ol>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/ubuntu0.png" alt="">
+      </div>
+      <p>Follow the installation of the Ubuntu Server, stop when you reach the "<span class="highlighted-text">Network connections</span>" tab. You should click "continue" or "done" for the vast majority of the steps as we will not configure a 
+        proxy, or an Ubuntu archive mirror so you can leave the boxes empty. Use the arrows on your keyboard as well as enter to click on the buttons
+        on the interface.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/ubuntu1.png" alt="">
+      </div>
+      <p>For our machines to communicate and for us to achieve a stable connection between the attacker and the victim, we have to set a static IP address
+        to our Ubuntu Server. Go to "<span class="colorful-underline">Edit</span>", "<span class="colorful-underline">Virtual Network Editor...</span>", select the one that is of type NAT. Next click <span class="colorful-underline">NAT Settings...</span>
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm0.png" alt="">
+      </div>
+      <p>Here you need to note down the subnet IP and the gateway IP as highlighted in the image below. You don&#39;t have to change anything here
+        so simply close the tabs and go back to you Ubuntu machine. Note that we aren&#39;t closing the machine. If you closed the machine then just boot into it again
+        and follow the installation until you reach the <span class="colorful-underline">Network</span> section.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm1.png" alt="">
+      </div>
+      <p>Once you're back to your virtual machine write down the IP as seen in the image. Don&#39;t include the &#47;24. Use the arrow up to navigate to the first option. Press Enter on your keyboard.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/eth3.png" alt="">
+      </div>
+      <p>Use the arrow down to edit IPv4 and press enter on your keyboard.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/eth0.png" alt="">
+      </div>
+      <p>Press enter on your keyboard and use the arrow down to pick the second option. Press Enter.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/eth1.png" alt="">
+      </div>
+      <p>Complete configuration with the data you have previously gathered. Navigate with the arrow down to the save
+        button and press enter. Now you can proceed with the installation process.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/eth4.png" alt="">
+      </div>
+      <p>Make sure to write down the credentials you have used in the "<span class="colorful-underline">Profile setup</span>" as you will need it to login
+      after you will reboot the machine. For instance, I have used the username: attacker and the password: ubuntu.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm2.png" alt="">
+      </div>
+      <p>Make sure that you install OpenSSH so just press enter when you get to this page and an X should appear between the [].</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm3.png" alt="">
+      </div>
+      <p>We aren&#39;t installing any snaps so just press done.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm4.png" alt="">
+      </div>
+      <p>Now our machine is ready. Reboot the machine instead of waiting for the update so just cancel the update and navigate to the
+        menu at the top.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm5.png" alt="">
+      </div>
+      <p>Click the arrow next to the button. A menu should pop up and you should click on <span class="colorful-underline">Restart Guest</span>. Congrats, the first machine is up and running.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vm6.png" alt="">
+      </div>
+      <p>If you have run everything according to this guide, you should be able to login with the username and password you have assigned.
+        If you are running into any issues simply delete the machine and add a new one by following the steps in this section.
+      </p>
+      <span class="heading" id="win-vm">Windows 11 VM</span>
+      <p style="margin-right: auto">Let's setup the Windows VM. Extract the files from the zip. Click on this file:</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/win.png" alt="">
+      </div>
+      <p>Give it a name and a place where you will store the files. Note that you must ensure that you have around
+        60GB of free disk space for this VM. Click "Import" and wait until the process is completed.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/win0.png" alt="">
+      </div>
+      <p>Now I recommend you allocate less than 8GB of memory if you don&#39;t
+        want to get a blue screen so 4GB should be enough.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/win1.png" alt="">
+      </div>
+      <p>Power on the Windows VM and after it boots up go on the library on the left and
+        right click on the windows machine. Here you should make sure that VMware Tools
+        have been installed or updated so you won&#39;t have trouble with copy pasting
+        or dragging and dropping files.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/vmtools.png" alt="">
+      </div>
+      <p>In my case I already updated the tools so make sure to install or update the tools. Let's proceed to
+        disabling the security on our system. First of, we are disabling Windows Security because this lab isn&#39;t about
+        hacking into a Windows machine, it focuses on analyzing the behavior of the machine before being attacked and
+        the processes that occur on the machine once the attack has been initiated. By now you should know that one of the top background
+        processes running on your Windows computer is the "Antimalware Service Executable". What we are going to do is ensure that the
+        layer of protection offered by Microsoft Defender is disabled, a customary task executed by malicious software.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/tm.png" alt="">
+      </div>
+      <p>There are two ways to completely disable Windows' layer of security: you can use external software that can do that for you,
+        something I tried and decided not to include in this post, or you have to manually disable Defender. Press the Windows key on your keyboard and type 
+        "Windows Security" in the search bar. Next click on "Virus & threat protection", under “Virus & threat protection settings” click “Manage settings”.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec0.png" alt="">
+      </div>
+      <p>Make sure to disable all the options on this tab.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec.png" alt="">
+      </div>
+      <p>Now close the "Windows Security" tab and click the Windows key, in the search bar type "cmd" and click "Run as administrator".</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec1.png" alt="">
+      </div>
+      <p>Here you should run <span class="colorful-underline">gpedit.msc</span>. Note that an important step here is to
+      become familiar with cmd. You can check out this <a class="text-highlight" target="_blank" href="https://www.lifewire.com/command-prompt-2625840">link</a> for a basic
+      overview.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec2.png" alt="">
+      </div>
+      <p>Now you should see a tab that looks like this. The local group policy editor allows you to change settings and configurations on your computer
+        changing the way your computer works. This includes changing security policies, setting certain limitations,
+        and various other system preferences that come in handy for our lab. So, you can see it as an advanced policy console where you can modify application
+        behavior and system configurations.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec3.png" alt="">
+      </div>
+      <p>Navigate to: Computer Configuration \ Administrative Templates \ Windows Components. Scroll down and find "Microsoft Defender Antivirus" and click on it.
+        Find "Turn off Microsoft Windows Defender Antivirus" and double-click on it.
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec5.png" alt="">
+      </div>
+      <p>Now you should enable this policy, click "Apply" and "Ok".</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec6.png" alt="">
+      </div>
+      <p>If you have followed the steps you should the state should change from &quot;Not configured&quot; =&gt; &quot;Enabled&quot;. You can close the tab now.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec7.png" alt="">
+      </div>
+      <p>The next step is to change the value of 'DisableAntiSpyware' ultimately disabling Windows Defender via Registry, the place where Windows stores
+        configuration settings, user preferences, and so on. If you haven&#39;t closed the administrative command prompt then you can use it to run: 
+      </p>
+      <div class="code-snippet">
+        <pre><code id="code-example" class="language-javascript">REG ADD "hklm\software\policies\microsoft\windows defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f</code></pre>
+      </div>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec8.png" alt="">
+      </div>
+      <ol class="custom-numbered-list">
+        <li class="numbered-point">&quot;REG ADD&quot; tells the computer that you want to add or modify a registry entry.</li>
+        <li class="numbered-point">&quot;hklm\software\policies\microsoft\windows defender&quot; is the location in the registry where the change will be made. It refers to a specific folder or key that holds Windows Defender settings.</li>
+        <li class="numbered-point">&quot;/v DisableAntiSpyware&quot; specifies the name of the setting you want to modify or create. In this case, it&#39;s called &quot;DisableAntiSpyware.&quot;</li>
+        <li class="numbered-point">&quot;/t REG_DWORD&quot; indicates the type of data the setting expects. It tells the computer that the value will be a number (specifically a DWORD, which stands for Double Word). We
+          use a DWORD instead of WORD because we want to ensure that the setting satisfies a wide range of values related to Windows Defender&#39;s configuration.
+        </li>
+        <li class="numbered-point">&quot;/d 1&quot; sets the value of the &quot;DisableAntiSpyware&quot; setting to 1. This typically means that the feature associated with the setting will be enabled.</li>
+        <li class="numbered-point">&quot;/f&quot; tells the computer to force the command without asking for confirmation.</li>
+      </ol>
+      <p>The next step is to boot into Safe Mode to disable the services related to Microsoft Defender. Click the windows button on your keyboard and type
+        &quot;msconfig&quot; into the search bar. Navigate to &quot;Boot&quot; &gt; &quot;Boot options&quot; and check "Safe boot". Next click on &quot;Apply&quot; and
+        &quot;OK&quot;. Restart the machine.</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec9.png" alt="">
+      </div>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/winsec-a.png" alt="">
+      </div>
+      <p>Now in safe mode click the Windows Key on your keyboard and type &quot;reg&quot; the first option should be the registry editor. After you&#39;ve opened
+        the Registry Editor the field highlighted in red is a field you can click on and type a path that you want to search for so it would be easier for you 
+        to navigate and disable the services.
+      </p>
+      <p>Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Sense</p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/sm.png" alt="">
+      </div>
+      <p>You should follow these steps to disable the services:</p>
+      <ol class="custom-numbered-list">
+        <li class="numbered-point">Input the path</li>
+        <li class="numbered-point">Double-click on the &quot;Start&quot; and change the hexadecimal value from 3 to 4</li>
+        <li class="numbered-point">Click &quot;OK&quot;.</li>
+      </ol>
+      <p>Here&#39;s an example. I pasted the path from the image above and changed the value of &quot;Start&quot; to 4. You will have to follow the next paths to 
+        disable the services. (See Below the Image)
+      </p>
+      <div class="article-images">
+        <img class="image" src="/pictures/articles/analysis/sm0.png" alt="">
+      </div>
+      <ol class="custom-numbered-list">
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdFilter</li>
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Sense</li>
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdBoot</li>
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WinDefend</li>
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisDrv</li>
+        <li class="bullet-point">Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisSvc</li>
+      </ol>
+      <p>Note that when you are navigating to a certain setting, all of them have the same path you just have to change the name of the setting.
+        While being in Safe Mode you can&#39;t copy and paste from the Host OS to the Guest OS, so you&#39;ll have to do it manually. Now you can leave
+        Safe Mode following the same steps to enter Safe Mode. Click the Windows button on your keyboard and type
+        &quot;msconfig&quot; into the search bar. Navigate to &quot;Boot&quot; &gt; &quot;Boot options&quot; and uncheck "Safe boot". Next click on &quot;Apply&quot; and
+        &quot;OK&quot;. Restart the machine.
+      </p>
+      <p>Let&#39;s make sure that you understand what are those settings and why we have to change the value from 3 to 4.
+        The processes we are working with above are integral parts that provide antivirus and anti-malware protection
+        to you system so they are related to Windows Defender.
+      </p>
+      <ol class="custom-numbered-list">
+        <li class="bullet-point">WdFilter: the service responsible for file system scanning and filtering operations.</li>
+        <li class="bullet-point">Sense: the component that provides real-time protection and threat detection.</li>
+        <li class="bullet-point">WdBoot: the service responsible for scanning and protecting the system during the boot process.</li>
+        <li class="bullet-point">WinDefend: the service that manages the overall functionality of Windows Defender, including real-time protection, scanning, and malware removal.</li>
+        <li class="bullet-point">WdNisDrv: this driver is used for network traffic inspection to identify and block potential threats.</li>
+        <li class="bullet-point">WdNisSvc: the service responsible for managing network inspection functionality and maintaining the network security aspect of Windows Defender.</li>
+      </ol>
+      <p>So hopefully you understand this better now. Further, we had to change the hexadecimal for the &quot;Start&quot; file
+        to basically disable the services. This is a list of possible hexadecimal values:
+      </p>
+      <ul class="custom-bullet-list">
+        <li class="bullet-point">0: The service is set to "Boot Start" and will start during the system boot process.</li>
+        <li class="bullet-point">1: The service is set to "System Start" and will start during the system initialization.</li>
+        <li class="bullet-point">2: The service is set to "Automatic Start" and will start automatically when the system starts.</li>
+        <li class="bullet-point">3: The service is set to "Manual Start" and requires manual intervention to start.</li>
+        <li class="bullet-point">4: The service is set to "Disabled" and will not start automatically or manually.</li>
+        <li class="bullet-point">5: The service is set to "Automatic (Delayed Start)" and will start automatically after other services with automatic start have started.</li>
+      </ul>
+      <p>Now by opening an administrative cmd, you should run the following commands to ensure that your VM won&#39;t go into standby.
+        You can copy all the commands at once.
+      </p>
+      <div class="code-snippet">
+        <pre><code id="code-example" class="language-javascript">powercfg -change -standby-timeout-ac 0
+powercfg -change -standby-timeout-dc 0
+powercfg -change -hibernate-timeout-ac 0
+powercfg -change -hibernate-timeout-dc 0
+powercfg -change -monitor-timeout-ac 0
+powercfg -change -monitor-timeout-dc 0
+</code></pre>
+      </div>
+      <p>We are done setting up our virtual machines, the only step that&#39;s left before attacking is downloading some powerful tools. Thanks a lot for taking your time
+        and reading this article. After setting up the machines go ahead and read part 2 to setup the tools and begin the attack.
+      </p>
+      
+
+    </div>
+    <footer class="footer">
+      <div class="footer-elements">
+        <h3>© Cyber Analyst 2023</h2>
+      </div>
+  
+    </footer>
+  </div>
+
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+</html>

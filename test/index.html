@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/tomorrow-night-bright.min.css">
+
+  <!-- Clipboard.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.css" />
+
+  <!-- Your custom styles -->
+  <style>
+    .code-snippet {
+      position: relative;
+    }
+
+    pre {
+      margin: 0;
+      padding: 0;
+      background-color: #2a2a2a;
+      color: #e6e1dc;
+    }
+    code {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-snippet">
+    <button class="code-snippet__copy" data-clipboard-target="#code-example">
+      Copy
+    </button>
+    <pre><code id="code-example" class="language-javascript">const bodyElement = document.body;
+const themeToggleBtn = selectItem('#theme-toggle-btn');
+const currentTheme = localStorage.getItem('currentTheme');
+
+if (currentTheme) {
+  bodyElement.classList.add('light-theme');
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  bodyElement.classList.toggle('light-theme');
+
+  if(bodyElement.classList.contains('light-theme')) {
+    localStorage.setItem('currentTheme', 'themeSwitch');
+  } else {
+    localStorage.removeItem('currentTheme');
+  }
+});</code>
+    </pre>
+    <pre><code class="language-javascript">const variable = "Here's some JavaScript";</code></pre>
+  </div>
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Clipboard.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+  <!-- Your custom JavaScript -->
+  <script>
+    // Initialize Clipboard.js copy button
+    var clipboard = new ClipboardJS('.code-snippet__copy');
+  
+    clipboard.on('success', function(event) {
+      event.clearSelection();
+      var copyButton = event.trigger;
+      copyButton.textContent = 'Copied';
+      copyButton.disabled = true;
+    });
+  
+    // Adjust the size of the pre element based on the code's dimensions
+    function adjustPreSize() {
+      var codeElement = document.getElementById('code-example');
+      var preElement = codeElement.parentNode;
+      preElement.style.display = 'inline-block';
+      preElement.style.width = codeElement.offsetWidth + 'px';
+      preElement.style.height = codeElement.offsetHeight + 'px';
+      preElement.style.margin = '0';
+      preElement.style.padding = '0';
+    }
+  
+    // Call the adjustPreSize function when the code is highlighted
+    document.addEventListener('DOMContentLoaded', function() {
+      hljs.initHighlightingOnLoad();
+      adjustPreSize();
+    });
+  </script>
+  
+</body>
+</html>
